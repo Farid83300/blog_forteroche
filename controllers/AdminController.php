@@ -158,6 +158,19 @@ class AdminController {
         Utils::redirect("admin");
     }
 
+    /**
+     * Affiche la page de monitoring.
+     * @return void
+     * nouvelle méthode showMonitoring() qui vérifie la connexion et charge le template adminMonitoring
+     */
+    public function showMonitoring() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        $view = new View("Monitoring");
+        $view->render("adminMonitoring");
+    }
+
 
     /**
      * Suppression d'un article.

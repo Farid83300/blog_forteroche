@@ -35,10 +35,9 @@
     <main>    
         <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
     </main>
-    
+    <!-- Ajout du lien Monitoring dans le footer -->
     <footer>
-        <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="index.php?action=admin">Admin</a>
+        <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="index.php?action=admin">Admin</a><?php if (isset($_SESSION['user'])) : ?> - <a href="index.php?action=adminMonitoring">Monitoring</a><?php endif; ?>
     </footer>
-
 </body>
 </html>

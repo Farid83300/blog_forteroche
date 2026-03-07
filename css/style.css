@@ -234,6 +234,13 @@ article>.footer {
     color: var(--dateColor);
 }
 
+.infoMonitoring {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+}
+
 .articleList>article:hover .info {
     color: var(--commentPaleColor);
 }
@@ -346,6 +353,43 @@ a.info {
  * Partie monitoring
  */
 
+
+.articleLine--header {
+    background-color: var(--headerColor);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.articleLine--header .title,
+.articleLine--header .content {
+    font-size: 16px;
+}
+
+.articleLine--alt {
+    background-color: var(--commentColor);
+}
+
+/* Monitoring : tableau pleine largeur */
+.adminArticle--monitoring {
+    width: 100%;
+}
+
+.adminArticle--monitoring .title {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    font-size: 15px;
+}
+
+.adminArticle--monitoring .content {
+    min-width: 180px;
+    width: 180px;
+    text-align: center;
+    flex-grow: 0;
+    justify-content: center;
+}
 
 
 

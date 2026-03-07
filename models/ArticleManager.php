@@ -93,7 +93,30 @@ class ArticleManager extends AbstractEntityManager
         $this->db->query($sql, ['id' => $id]);
     }
 
-        /**
+    /**
+     * Récupère tous les articles avec le nombre de commentaires associés.
+     * Utilise un LEFT JOIN pour inclure les articles sans commentaires (COUNT = 0).
+     * @return array : un tableau d'objets Article avec une propriété commentCount.
+     */
+    public function getAllArticlesWithCommentCount() : array
+    {
+        $sql = "SELECT article.*, COUNT(comment.id) AS comment_count 
+                FROM article 
+                LEFT JOIN comment ON comment.id_article = article.id 
+                GROUP BY article.id
+                ORDER BY article.date_creation DESC";
+        $result = $this->db->query($sql);
+        $articles = [];
+
+        while ($row = $result->fetch()) {
+            $article = new Article($row);
+            $article->setCommentCount((int) $row['comment_count']);
+            $articles[] = $article;
+        }
+        return $articles;
+    }
+
+    /**
      * Incrémente le nombre de vues d'un article.
      * On effectue l'opération directement en SQL pour éviter les problèmes
      * de concurrence (deux visiteurs qui chargeraient la page en même temps).

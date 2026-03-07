@@ -358,13 +358,13 @@ a.info {
     background-color: var(--headerColor);
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     text-transform: uppercase;
 }
 
-.articleLine--header .title,
-.articleLine--header .content {
-    font-size: 16px;
+.adminArticle--monitoring .articleLine--header .title,
+.adminArticle--monitoring .articleLine--header .content {
+    font-size: 18px;
 }
 
 .articleLine--alt {

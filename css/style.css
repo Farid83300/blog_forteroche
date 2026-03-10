@@ -362,6 +362,55 @@ a.info {
     text-transform: uppercase;
 }
 
+/* Liens de tri dans le header */
+.articleLine--header a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Conteneur label + flèches sur une seule ligne */
+.sortHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/* Groupe des deux flèches ▲▼ */
+.arrows {
+    display: flex;
+    flex-direction: row-reverse;
+    line-height: 1;
+    gap: 1px;
+}
+
+/* Flèche inactive : blanche */
+.arrow {
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+    line-height: 1;
+}
+
+/* Flèche active : rouge titleColor */
+.articleLine--header a.arrow--active {
+    color: var(--titleColor);
+}
+
+.arrow:hover {
+    color: white;
+}
+
+/* Colonnes plus larges pour date et commentaires */
+.adminArticle--monitoring .content {
+    min-width: 250px;
+    width: 250px;
+    text-align: center;
+    flex-grow: 0;
+    justify-content: center;
+}
+
 .adminArticle--monitoring .articleLine--header .title,
 .adminArticle--monitoring .articleLine--header .content {
     font-size: 18px;
@@ -376,21 +425,17 @@ a.info {
     width: 100%;
 }
 
+/* Largeur élargie uniquement pour la page monitoring */
+.main--wide {
+    max-width: 1200px;
+}
+
 .adminArticle--monitoring .title {
     flex: 1;
     min-width: 0;
     width: auto;
     font-size: 15px;
 }
-
-.adminArticle--monitoring .content {
-    min-width: 180px;
-    width: 180px;
-    text-align: center;
-    flex-grow: 0;
-    justify-content: center;
-}
-
 
 
 

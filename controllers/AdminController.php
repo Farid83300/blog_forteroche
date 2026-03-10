@@ -166,15 +166,20 @@ class AdminController {
     {
         $this->checkIfUserIsConnected();
 
+        // On récupère les paramètres de tri depuis l'URL, avec des valeurs par défaut.
+        $sort = Utils::request('sort', 'date_creation');
+        $order = Utils::request('order', 'DESC');
+
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticlesWithCommentCount();
+        $articles = $articleManager->getAllArticlesWithCommentCount($sort, $order);
 
         $view = new View("Monitoring");
         $view->render("adminMonitoring", [
-            'articles' => $articles
+            'articles' => $articles,
+            'sort'     => $sort,
+            'order'    => $order
         ]);
     }
-
 
     /**
      * Suppression d'un article.

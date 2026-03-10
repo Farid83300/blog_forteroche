@@ -96,15 +96,27 @@ class ArticleManager extends AbstractEntityManager
     /**
      * Récupère tous les articles avec le nombre de commentaires associés.
      * Utilise un LEFT JOIN pour inclure les articles sans commentaires (COUNT = 0).
+     * @param string $sort : le champ de tri (title, date_creation, views, comment_count).
+     * @param string $order : le sens du tri (ASC ou DESC).
      * @return array : un tableau d'objets Article avec une propriété commentCount.
      */
-    public function getAllArticlesWithCommentCount() : array
+    public function getAllArticlesWithCommentCount(string $sort = 'date_creation', string $order = 'DESC') : array
     {
+        // --- Sécurité - DEBUT - empêche les Injections SQL
+        // Whitelist des champs de tri autorisés pour éviter les injections SQL.
+        $allowedSorts = ['title', 'date_creation', 'views', 'comment_count'];
+        $allowedOrders = ['ASC', 'DESC'];
+
+        // Si les valeurs ne sont pas dans la whitelist, on utilise les valeurs par défaut.
+        if (!in_array($sort, $allowedSorts)) $sort = 'date_creation';
+        if (!in_array($order, $allowedOrders)) $order = 'DESC';
+        // --- Sécurité - FIN - empêche les Injections SQL
+
         $sql = "SELECT article.*, COUNT(comment.id) AS comment_count 
                 FROM article 
                 LEFT JOIN comment ON comment.id_article = article.id 
                 GROUP BY article.id
-                ORDER BY article.date_creation DESC";
+                ORDER BY $sort $order";
         $result = $this->db->query($sql);
         $articles = [];
 
@@ -116,7 +128,7 @@ class ArticleManager extends AbstractEntityManager
         return $articles;
     }
 
-    /**
+        /**
      * Incrémente le nombre de vues d'un article.
      * On effectue l'opération directement en SQL pour éviter les problèmes
      * de concurrence (deux visiteurs qui chargeraient la page en même temps).

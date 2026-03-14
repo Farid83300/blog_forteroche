@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 require_once 'config/_config.php';
 require_once 'config/autoload.php';
@@ -35,6 +36,11 @@ try {
         case 'addComment':
             $commentController = new CommentController();
             $commentController->addComment();
+            break;
+
+        case 'deleteComment':
+            $commentController = new CommentController();
+            $commentController->deleteComment();
             break;
 
 
